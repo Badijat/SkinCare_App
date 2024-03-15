@@ -1,0 +1,62 @@
+body {
+    background-color: #f0f2f5; /* Light grey background */
+    font-family: Arial, sans-serif; /* Use a modern font */
+}
+
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,.1); /* Add subtle shadow to navbar */
+}
+
+.card {
+    border-radius: 8px; /* Rounded corners for the card */
+    box-shadow: 0 4px 8px rgba(0,0,0,.1); /* Add shadow for depth */
+    margin-top: 20px; /* Add some margin to the top */
+}
+
+.card-header {
+    background-color: #007bff; /* Use Bootstrap primary color */
+    color: #fff; /* White text color */
+    font-size: 24px; /* Increase font size */
+    text-align: center; /* Center the title */
+    border-bottom: none; /* Remove default border */
+}
+
+.form-control {
+    border-radius: 20px; /* Rounded fields for modern look */
+    padding: 20px; /* More padding for larger touch targets */
+    margin-bottom: 10px; /* Add space between fields */
+}
+
+.btn-dark {
+    border-radius: 20px; /* Rounded buttons */
+    padding: 10px 30px; /* Larger buttons */
+    font-size: 18px; /* Increase font size for better readability */
+    width: 100%; /* Full width button */
+    box-shadow: 0 2px 4px rgba(0,0,0,.2); /* Button shadow */
+    
+
+}
+
+#loginSubmit {
+    background-color: #007bff; /* Bootstrap primary blue */
+    border-color: #007bff; /* Set border color to match */
+    color: #ffffff; /* White text color */
+}
+
+#loginSubmit:hover, #loginSubmit:focus {
+    background-color: #0056b3; /* Darker shade of blue for hover/focus */
+    border-color: #0056b3;
+}
+
+
+.btn-dark:hover {
+    background-color: #0056b3; /* Darken button on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .card {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}

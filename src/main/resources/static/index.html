@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Beauty & Skincare Store</title>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/product.js"></script>
+    <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+    <!-- <script type="text/javascript" src="js/dashboard.js"></script> -->
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/login.css" rel="stylesheet">
+    <link href="images/favicon.ico" rel="shortcut icon" />
+
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+    <!-- Custom styles for this template -->
+</head>
+
+<body>
+
+    <main class="container-fluid content-class" id="login-section">
+			    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="nav-bar">
+	        <div class="container-fluid">
+	            <a class="navbar-brand" id="header-content">Welcome To Login Page</a>
+	            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+	                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+	                aria-label="Toggle navigation">
+	                <span class="navbar-toggler-icon"></span>
+	            </button>
+	            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+	                    <li class="nav-item">
+	                    </li>
+	                </ul>
+	            </div>
+	        </div>
+	    </nav>
+	
+	    <div class="container" id="login-section">
+	        <br /><br />
+	        <div class="row">
+	            <div class="col-md-6 offset-md-3">
+	                <div class="card">
+	                    <div class="card-header">
+	                        <h2 class="text-center">Login Form</h2>
+	                    </div>
+	                    <div class="card-body" id="login-card">
+	                        <form class="form-horizontal">
+	                            <div class="form-group mb-3">
+	                                <label class="control-label"> Username</label>
+	                                <input type="text" id="username" name="username" class="form-control"
+	                                    placeholder="Enter username" />
+	                            </div>
+	
+	                            <div class="form-group mb-3">
+	                                <label class="control-label"> Password</label>
+	                                <input type="password" id="password" name="password" class="form-control"
+	                                    placeholder="Enter password" />
+	                            </div>
+	                            <div class="form-group mb-3">
+	                                <button class="btn btn-dark" id="loginSubmit">Submit</button>
+	                            </div>
+	                        </form>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</main>
+	
+	<!--PRODUCTS-->
+	<main class="content-class d-none" id="home-section">
+<header style="background-image: url('images/Header1.jpeg'); min-height: 150px;">
+    <div class="p-4 text-black text-left">
+        <h1>Beauty & Skincare Organics</h1>
+    </div>
+</header>
+	    
+	    <div class="container-fluid ">
+	        <div class="row">
+	            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+	                <div class="position-sticky pt-3 sidebar-sticky d-grid gap-3">
+	                    <button type="button" class="btn btn-dark" id="home_but">
+	                        <span data-feather="home" class="align-text-bottom"></span>
+	                        Home
+	                    </button>
+	                    <button type="button" class="btn btn-primary" id="listBrand_but">
+	                        <span data-feather="bar-chart-2" class="align-text-bottom"></span>
+	                        Search Brand
+	                    </button>
+	                    <button type="button" class="btn btn-primary" id="listType_but">
+	                        <span data-feather="bar-chart" class="align-text-bottom"></span>
+	                        Search Type
+	                    </button>
+	                     <button type="button" class="btn btn-primary" id="listConcern_but">
+	                        <span data-feather="bar-chart" class="align-text-bottom"></span>
+	                        Search Skin Concern
+	                    </button>
+	                    <button type="button" class="btn btn-primary" id="listDeals_but">
+	                        <span data-feather="dollar-sign" class="align-text-bottom"></span>
+	                        Search Deals
+	                    </button>
+	                    <!-- <button type="button" class=" btn btn-primary" id="listDeals_but">
+	                        <span data-feather="info" class="align-text-bottom"></span>
+	                        More Details
+	                    </button> -->
+	
+	                </div>
+	            </nav>
+	
+	            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+	                <div
+	                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+	                    <h1 class="h2" id="dashboard_title">All Products</h1>
+	                </div>
+	
+	                <div class="container theScroll">
+	                    <div id="merchContent" class="row">
+	                    </div>
+	                </div>
+	            </main>
+	        </div>
+	    </div>
+	
+	    <div class="modal fade" id="detailsModal" role="dialog">
+	        <div class="modal-dialog">
+	            <!-- Modal content-->
+	            <div class="modal-content">
+	                <div class="modal-header">
+	                    <h4 class="modal-title">Details</h4>
+	                </div>
+	                <div class="modal-body" id="contents">
+	                    <img id="pic" src="" height="200" />
+	                    <p></p>
+	                    <div id="description"></div>
+	                    <p></p>
+	                    <label>RRP:</label>
+	                    <input type="text" id="rrp" name="rrp"><br />
+	                    <label>Online Price:</label>
+	                    <input type="text" id="online_price" name="online_price" /><br />
+	                    <label>Saving:</label>
+	                    <input type="text" id="saving" name="saving" /><br />
+	                </div>
+	                <div class="modal-footer d-grid">
+	                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	
+	    <!-- This modal will prompt the user for a brand -->
+	    <div class="modal fade" id="filterModalBrand" role="dialog">
+	        <div class="modal-dialog">
+	            <!-- Modal content-->
+	            <div class="modal-content">
+	                <div class="modal-header">
+	                    <h4 class="modal-title">Filter By Brand</h4>
+	                </div>
+	                <div class="modal-body" id="contents">
+	                    <label>Brand:</label>
+	                    <input type="text" id="brand" name="brand"><br />
+	                </div>
+	                <div class="modal-footer">
+	                    <button type="button" class="btn btn-default" id="submitBrandButton">Submit</button>
+	                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    
+ <!-- This modal will prompt the user for a SkinConcern i.e. acne, redness etc -->
+	    <div class="modal fade" id="filterModalConcern" role="dialog">
+	        <div class="modal-dialog">
+	            <!-- Modal content-->
+	            <div class="modal-content">
+	                <div class="modal-header">
+	                    <h4 class="modal-title">Filter By Skin Concern</h4>
+	                </div>
+	                <div class="modal-body" id="contents">
+	                    <label>Concern:</label>
+	                    <input type="text" id="concern" name="concern"><br />
+	                </div>
+	                <div class="modal-footer">
+	                    <button type="button" class="btn btn-default" id="submitConcernButton">Submit</button>
+	                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    
+	    <!-- This modal will prompt the user for a type i.e. ugly or book etc -->
+	    <div class="modal fade" id="filterModalType" role="dialog">
+	        <div class="modal-dialog">
+	            <!-- Modal content-->
+	            <div class="modal-content">
+	                <div class="modal-header">
+	                    <h4 class="modal-title">Filter By Type</h4>
+	                </div>
+	                <div class="modal-body" id="contents">
+	                    <label>Type:</label>
+	                    <input type="text" id="type" name="type"><br />
+	                </div>
+	                <div class="modal-footer">
+	                    <button type="button" class="btn btn-default" id="submitTypeButton">Submit</button>
+	                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	
+	    <!-- This modal will prompt the user for a value to check for items with this discount or less -->
+	    <div class="modal fade" id="filterModalDeal" role="dialog">
+	        <div class="modal-dialog">
+	            <!-- Modal content-->
+	            <div class="modal-content">
+	                <div class="modal-header">
+	                    <h4 class="modal-title">Filter By Deal</h4>
+	                </div>
+	                <div class="modal-body" id="contents">
+	                    <p>Enter an amount and we will check to see what items are discounted by this amount!!!</p>
+	                    <label>Dicounted Price:</label>
+	                    <input type="text" id="deal" name="deal"><br />
+	                </div>
+	                <div class="modal-footer">
+	                    <button type="button" class="btn btn-default" id="submitDealButton">Submit</button>
+	                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	
+<footer>
+	<div class="p-4 custom-footer-color text-white text-center">
+		<h5>The one stop shop for everything</h5>
+		<h3>Beauty & Organic Skincare </h3>
+	</div>
+</footer>
+
+	</main>
+
+
+    <script>
+        feather.replace()
+    </script>
+
+
+
+</body>
+
+</html>
