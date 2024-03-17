@@ -1,5 +1,6 @@
 package com.tus.care.contollers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tus.care.dao.ProductRepo;
 import com.tus.care.dto.Product;
 import com.tus.care.services.ProductService;
 
@@ -18,6 +20,9 @@ public class ProductController {
 
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private ProductRepo productRepo;
 	
 //	@GetMapping("/")
 //	public String index() {
@@ -61,6 +66,8 @@ public class ProductController {
       }
   }
   
+  //Get via postman 
+  //http://localhost:9092/products/search/skin_concern/dry
   @GetMapping("products/search/skin_concern/{querySkin_Concern}")
   public ResponseEntity<List<Product>> getProductsBySkinConcern(@PathVariable("querySkin_Concern") String skinConcern) {
       List<Product> productsBySkinConcern = productService.getProductsBySkinConcern(skinConcern);
@@ -71,28 +78,16 @@ public class ProductController {
       }
   }
 
-
-  
-  
-  
-  
-  
-  
-  //http://localhost:9092/products/search/deals/23
-  @GetMapping("products/search/deals/{price}")
+////http://localhost:9092/products/search/deal/5
+  @GetMapping("/products/search/deal/{price}")
   public ResponseEntity<List<Product>> getProductsByPriceLessThan(@PathVariable("price") double dealPrice) {
-      List<Product> productsByDeals = productService.getProductsByDealPrice(dealPrice);
+      List<Product> productsByDeals = productRepo.findByDealsMoreThan(dealPrice);
       if (!productsByDeals.isEmpty()) {
           return new ResponseEntity<>(productsByDeals, HttpStatus.OK);
       } else {
-          return new ResponseEntity<>(productsByDeals, HttpStatus.NO_CONTENT);
+          return new ResponseEntity<>(HttpStatus.NO_CONTENT);
       }
   }
-
-
-    
-    
-    
-    
-    
+  
+  
 }

@@ -11,7 +11,8 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	private Long id; 
-	private double price;
+	private double rrp;
+	private double online;
 
     @Size(min=3) //the name has to be a minimum size of 3 (validation)
 	private String name;
@@ -35,12 +36,13 @@ public class Product {
     	
     }
 
-	public Product(Long id, double price, @Size(min = 3) String name, String brand, String type, String scent,
-			String description, String images, String volume, String skinConcern, String ingredients, String usage,
-			String benefits, Long quantity_in_stock) {
+	public Product(Long id, double rrp, double online, @Size(min = 3) String name, String brand, String type,
+			String scent, String description, String images, String volume, String skinConcern, String ingredients,
+			String usage, String benefits, Long quantity_in_stock) {
 		super();
 		this.id = id;
-		this.price = price;
+		this.rrp = rrp;
+		this.online = online;
 		this.name = name;
 		this.brand = brand;
 		this.type = type;
@@ -63,12 +65,20 @@ public class Product {
 		this.id = id;
 	}
 
-	public double getPrice() {
-		return price;
+	public double getRrp() {
+		return rrp;
 	}
 
-	public void setPrice(double price) {
-		this.price = price;
+	public void setRrp(double rrp) {
+		this.rrp = rrp;
+	}
+
+	public double getOnline() {
+		return online;
+	}
+
+	public void setOnline(double online) {
+		this.online = online;
 	}
 
 	public String getName() {
@@ -166,6 +176,5 @@ public class Product {
 	public void setQuantity_in_stock(Long quantity_in_stock) {
 		this.quantity_in_stock = quantity_in_stock;
 	}
-
 
 }

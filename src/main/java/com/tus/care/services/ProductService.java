@@ -31,15 +31,14 @@ public class ProductService {
         return productRepo.findByTypeContaining(type);
     }
 
-    public List<Product> getProductsByDealPrice(double price){
-        return productRepo.findByPriceLessThan(price);
-    }
-	
 	//ProductsBySkinConcern
     public List<Product> getProductsBySkinConcern(String skinConcern) {
         return productRepo.findBySkinConcernContaining(skinConcern);
     }
     
+//    public List<Product> findByDealsMoreThan(double price) {
+//        return productRepo.findByDealsMoreThan(price);
+//    }
     
     
 	

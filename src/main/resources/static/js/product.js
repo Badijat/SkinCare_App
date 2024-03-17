@@ -44,75 +44,88 @@ const showHome = function() {
 
 var productURL = "http://localhost:9092/products";
 
-var findAll = function(){
-	    $.ajax({
-        type: 'GET',
-        url: productURL,
-        dataType: "json", // data type of response
-        success: renderList
-    });
-};
+var findAll = function() {
+	$.ajax({
+		type: 'GET',
+		url: productURL,
+		dataType: "json",
+		success: function(data) {
+			$('#dashboard_title').text("All Products: ");
+			renderList(data);
+		}
+	});
+}
 
 var findById = function(id){
 	    $.ajax({
         type: 'GET',
-        url: productURL + '/' + id,
-        dataType: "json",
-        success: function(data) {
-            showDetails(data);
-        },
-    error: function(error) {
-      console.error('Error fetching store details: ', error);
-    }
+        url: productURL + '/'+ id,
+        dataType: "json", 
+        success: function(product){
+			$('#dashboard_title').text("Filtering by ID: " + id);
+			showDetails(product);
+		}
     });
-};
+}
 
-var findByBrand = function(brand){
-	    $.ajax({
-        type: 'GET',
-        url: productURL + '/search/brand/' + brand,
-        dataType: "json",
-        success: renderList,
-        error: function() {
-            alert("Error fetching data");
-        }
-    });
-};
+// /products/search/brand/{queryBrand}
+var findByBrand = function(brand) {
+	console.log("Filter by Brand");
+	$.ajax({
+		type: 'GET',
+		url: productURL+ '/search/brand/' + brand,
+		dataType: "json",
+		success: function(data) {
+			$('#dashboard_title').text("Filtering by Brand: " + brand);
+			renderList(data);
+		}
+	});
+}
 
+// /products/search/item/serum
 var findByType = function(type){
 	    $.ajax({
         type: 'GET',
         url: productURL + '/search/type/' + type,
         dataType: "json",
-        success: renderList,
+        success: function(data) {
+			$('#dashboard_title').text("Filtering by Type: " + type);
+			renderList(data);
+			},
         error: function() {
             alert("Error fetching data");
-        }
+            }
     });
 };
 
-var findBySkinConcern = function(type){
+var findBySkinConcern = function(skinConcern){
 	    $.ajax({
         type: 'GET',
-        url: productURL + '/search/skin_concern/' + type,
+        url: productURL + '/search/skin_concern/' + skinConcern,
         dataType: "json",
-        success: renderList,
+        success: function(data) {
+			$('#dashboard_title').text("Filtering by Skin Concern: " + skinConcern);
+			renderList(data);
+			},
         error: function() {
             alert("Error fetching data");
-        }
+            }
     });
 };
 
+///products/search/deal/5
 var findByDeal = function(deal){
-	    // This would depend on how your backend is set up to handle this query.
-    // Assuming there's an endpoint to search by deal:
-    $.ajax({
+	    $.ajax({
         type: 'GET',
         url: productURL + '/search/deal/' + deal,
         dataType: "json",
-        success: renderList
-    });
-};
+		success: function(data) {
+			let dealValue = parseFloat(deal);
+			$('#dashboard_title').text("Filtering by Discount of \u20AC" + dealValue.toFixed(2) + " or more..");
+			renderList(data);
+		}
+	});
+}
 
 var renderList = function(data){
 	    var list = data.map(function(product) {
@@ -132,72 +145,20 @@ var renderList = function(data){
 
 
 var showDetails = function(product){
-    // Implementation of this function would depend on how you want to display the details.
-    // It could fill in a modal dialog or some kind of details pane.
-    // For example, assuming modal fields with IDs shown in your HTML template:
-    console.log(product)
-    $('.modal-title').text(product.brand +"-"+ product.scent);
-    $('#pic').attr('src', 'images/' + product.images);
-    $('#description').text(product.description);
-    // ... set other details fields
-    $('#rrp').val(product.rrp);
-    $('#online_price').val(product.online);
-    $('#saving').val(product.rrp - product.online);
-    $('#detailsModal').modal('show');
+	console.log("Show Details");
+	$('#detailsModal').find('.modal-title').text(product.brand + " - " + product.name);
+	$('#pic').attr('src', 'images/' + product.images);
+	//ingredients
+	$('#ingredients').text(product.ingredients);
+	$('#description').text(product.description);
+	    // ... set other details fields
+	$('#rrp').val(product.rrp);
+	$('#online_price').val(product.online);
+	var saving = product.rrp - product.online;
+	var percent = (saving/product.rrp)*100;
+	$('#saving').val("\u20AC" + saving.toFixed(2) + " (" + (percent).toFixed(2) + "%)");
+	$('#detailsModal').modal('show');
 };
-
-//Home Button
-$('#home_but').click(function() {
-    findAll();
-});
-
-//Seach Brand Button
-$('#listBrand_but').click(function() {
-    $('#filterModalBrand').modal('show');
-});
-
-$('#submitBrandButton').click(function() {
-    var minYear = $('#minYear').val();
-    var maxYear = $('#maxYear').val();
-    findByBrand(minYear, maxYear); // Assuming this function is defined to handle min/max year
-});
-
-
-//Seach Type Button
-$('#listType_but').click(function() {
-    $('#filterModalType').modal('show');
-});
-
-$('#submitTypeButton').click(function() {
-    var minYear = $('#minYear').val();
-    var maxYear = $('#maxYear').val();
-    findByType(minYear, maxYear); // Assuming this function is defined to handle min/max year
-});
-
-//Seach SkinConcern Button
-$('#listConcern_but').click(function() {
-    $('#filterModalConcern').modal('show');
-});
-
-$('#submitConcernButton').click(function() {
-    var minYear = $('#minYear').val();
-    var maxYear = $('#maxYear').val();
-    findBySkinConcern(minYear, maxYear); // Assuming this function is defined to handle min/max year
-});
-
-
-//Search Deals Button
-$('#listDeals_but').click(function() {
-    $('#filterModalDeal').modal('show');
-});
-
-$('#submitDealButton').click(function() {
-    var minYear = $('#minYear').val();
-    var maxYear = $('#maxYear').val();
-    findByDeal(minYear, maxYear); // Assuming this function is defined to handle min/max year
-});
-
-
 
 
 //When the DOM is ready.
