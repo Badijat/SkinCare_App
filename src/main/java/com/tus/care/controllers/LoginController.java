@@ -1,4 +1,4 @@
-package com.tus.care.contollers;
+package com.tus.care.controllers;
 
 import java.util.Optional;
 

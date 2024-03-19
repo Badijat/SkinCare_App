@@ -27,7 +27,10 @@ public class Product {
     private String volume;
     private String skinConcern;;
     private String ingredients;
+//    private String usage;
+    @Column(name = "`usage`")
     private String usage;
+
     private String benefits;
     private Long quantity_in_stock;
     

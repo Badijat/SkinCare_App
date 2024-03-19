@@ -1,4 +1,4 @@
-const rootUrl = "http://localhost:9092";
+const rootUrl = "http://localhost:9094";
 
 
 const login = function() {
@@ -12,37 +12,62 @@ const login = function() {
         data: JSON.stringify({ "username": username, "password": password }),
         dataType: "json",
         success: function(response) {
+            // Assuming response.data contains the role
             switch (response.data) {
                 case 'ADMIN':
- //                   loadContentForRole(RoleType.ADMIN, username);
-                    showHome();
+                    showAdminSection();
                     break;
                 case 'CUSTOMER':
- //                   loadContentForRole(RoleType.CUSTOMER, username);
-                    showHome();
+                    showCustomerSection();
                     break;
                 default:
-                    $('#login-card')
-                    .append("<div id=\"errorMsg\" class=\"alert alert-danger\"><strong>Error!</strong> Incorrect Username or password</div>").show();
+                    displayErrorMessage();
                     break;
             }
         },
         error: function() {
-            alert('Error during request. Incorrect username or password');
+            alert('Error during request. Please try again.');
         }
     });
 };
 
-const showHome = function() {
-    $('#login-section').addClass("d-none");
-    $('#home-section').removeClass("d-none");
-}
+const showAdminSection = function() {
+    $('#login-section').addClass('d-none');
+    $('#customer-section').addClass('d-none'); // Hide customer section
+    $('#admin-section').removeClass('d-none'); // Show admin section
+};
+
+const showCustomerSection = function() {
+    $('#login-section').addClass('d-none');
+    $('#admin-section').addClass('d-none'); // Hide admin section
+    $('#customer-section').removeClass('d-none'); // Show customer section
+};
+
+const displayErrorMessage = function() {
+    // Remove existing error messages to prevent duplicate messages
+    $('#errorMsg').remove();
+
+    // Append error message
+    $('#login-card').append(
+        `<div id="errorMsg" class="alert alert-danger" role="alert">
+            <strong>Error!</strong> Incorrect Username or Password.
+        </div>`
+    );
+};
+
+/*// Hook up the login function to the login form's submit event
+$(document).on('submit', '#productForm', function(e) {
+    e.preventDefault();
+    login();
+});*/
 
 
 
-//======== main=========// 
 
-var productURL = "http://localhost:9092/products";
+
+//======== products=========// 
+
+var productURL = "http://localhost:9094/products";
 
 var findAll = function() {
 	$.ajax({
@@ -161,8 +186,7 @@ var showDetails = function(product){
 };
 
 
-//When the DOM is ready.
-//Students dont have to code this section.
+//When the DOM is ready for the customer page.
 $(document).ready(function () {
 	 $('#loginSubmit').on('click', function(event) {
         event.preventDefault();
@@ -244,3 +268,6 @@ $(document).ready(function () {
 	});
 	findAll();
 });
+
+
+

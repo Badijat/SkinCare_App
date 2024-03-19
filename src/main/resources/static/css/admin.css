@@ -1,0 +1,105 @@
+.admin-section {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+.admin-header {
+    padding: 20px;
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    color: white;
+}
+
+.admin-header h1 {
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.admin-content {
+    padding: 20px;
+}
+
+.admin-controls {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.admin-controls input, 
+.admin-controls button {
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+
+#btnSearch, 
+#btnAdd {
+    background-color: #5D5C61;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#btnSearch:hover,
+#btnAdd:hover {
+    background-color: #3e3d42;
+}
+
+.admin-main {
+    display: flex;
+    justify-content: space-between;
+}
+
+.product-listing ul {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.product-listing ul li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.product-listing ul li:last-child {
+    border-bottom: none;
+}
+
+.product-listing ul li a {
+    color: #5D5C61;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.product-listing ul li a:hover {
+    color: #333;
+}
+
+.product-form table {
+    width: auto;
+}
+
+.admin-footer {
+    background-color: #9c7ab1;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+/*    position: absolute;*/
+    bottom: 0;
+    width: 100%;
+}
+
+.admin-footer p {
+    margin: 0;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .admin-main {
+        flex-direction: column;
+    }
+}

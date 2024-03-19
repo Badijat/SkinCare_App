@@ -1,4 +1,4 @@
-package com.tus.care.contollers;
+package com.tus.care.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,21 +29,21 @@ public class ProductController {
 //		return "<h1>BeautyStore Application </h1>";
 //	}
 	
-    //http://localhost:9092/products
+    //http://localhost:9094/products
 	@GetMapping("/products")
     public ResponseEntity<List<Product>> getAllProducts() {
         List<Product> products = productService.getAllProducts();
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
     
-    //http://localhost:9092/products/6
+    //http://localhost:9094/products/6
   @GetMapping("/products/{id}")
   public Product getProductById(@PathVariable Long id) {
       return productService.getProductById(id)
               .orElseThrow(() -> new RuntimeException("Product not found"));
   }
   //Get via postman 
-  //http://localhost:9092/products/search/brand/CeraVe
+  //http://localhost:9094/products/search/brand/CeraVe
   @RequestMapping("/products/search/brand/{queryBrand}") 
   public ResponseEntity<List<Product>> getProductByBrand(@PathVariable("queryBrand") String brand){
       List<Product> productsByBrand = productService.getProductByBrand(brand);
@@ -55,7 +55,7 @@ public class ProductController {
   }
   
   //Get via postman 
-  //http://localhost:9092/products/search/type/serum
+  //http://localhost:9094/products/search/type/serum
   @GetMapping("products/search/type/{queryType}")
   public ResponseEntity<List<Product>> getProductByType(@PathVariable("queryType") String type) {
       List<Product> productsByType = productService.getProductByType(type);
@@ -67,7 +67,7 @@ public class ProductController {
   }
   
   //Get via postman 
-  //http://localhost:9092/products/search/skin_concern/dry
+  //http://localhost:9094/products/search/skin_concern/dry
   @GetMapping("products/search/skin_concern/{querySkin_Concern}")
   public ResponseEntity<List<Product>> getProductsBySkinConcern(@PathVariable("querySkin_Concern") String skinConcern) {
       List<Product> productsBySkinConcern = productService.getProductsBySkinConcern(skinConcern);
@@ -78,7 +78,7 @@ public class ProductController {
       }
   }
 
-////http://localhost:9092/products/search/deal/5
+////http://localhost:9094/products/search/deal/5
   @GetMapping("/products/search/deal/{price}")
   public ResponseEntity<List<Product>> getProductsByPriceLessThan(@PathVariable("price") double dealPrice) {
       List<Product> productsByDeals = productRepo.findByDealsMoreThan(dealPrice);
