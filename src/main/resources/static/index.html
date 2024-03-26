@@ -3,6 +3,9 @@
 
 <head>
     <title>Beauty & Skincare Store</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    	
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/product.js"></script>
     <script type="text/javascript" src="js/admin.js"></script>
@@ -133,35 +136,40 @@
 			</main>
 		</div>
 	</div>
+<div class="modal fade" id="detailsModal" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content -->
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Details</h4>
+			</div>
+			<div class="modal-body" id="contents">
+				<img id="pic" src="" height="200" />
 
-	<div class="modal fade" id="detailsModal" role="dialog">
-		<div class="modal-dialog">
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title">Details</h4>
-				</div>
-				<div class="modal-body" id="contents">
-					<img id="pic" src="" height="200" />
-					<p></p>
-					<div id="description"></div>
-					<label>Ingredients:</label>
-					<input type="text" id="ingredients" name="ingredients"><br />
+				<div><strong>Ingredients:</strong> <span id="ingredients"></span></div>
+				<div><strong>Volume:</strong> <span id="volume"></span></div>
+				<div><strong>Usage:</strong> <span id="usage"></span></div>
+				<div><strong>Benefits:</strong> <span id="benefits"></span></div>
 
-					<p></p>
+				<p></p>
+				<div><strong>Description:</strong> <span id="description"></span></div>
+
+				<!-- Other input fields if needed -->
+				<p></p>
 					<label>RRP:</label>
 					<input type="text" id="rrp" name="rrp"><br />
 					<label>Online Price:</label>
 					<input type="text" id="online_price" name="online_price" /><br />
 					<label>Saving:</label>
 					<input type="text" id="saving" name="saving" /><br />
-				</div>
-				<div class="modal-footer d-grid">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-				</div>
+			</div>
+			<div class="modal-footer d-grid">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 			</div>
 		</div>
+
 	</div>
+</div>
 
 	<!-- This modal will prompt the user for a brand -->
 	<div class="modal fade" id="filterModalBrand" role="dialog">
@@ -249,9 +257,20 @@
 
 <!-- Admin Panel Main Container -->
 <main class="content-class d-none" id="admin-section">
-	<header class="admin-header" style="background-image: url('images/header2.jpg');">
-		<h1>Beauty & Skincare Organics </h1>
-	</header>
+<!--	 Admin content 
+	<header style="background-image: url('images/header2.jpg'); min-height: 150px;">
+		<div class="p-4 text-black text-left">
+			<h1>Beauty & Skincare Organics</h1>
+		</div>
+	</header>-->
+	
+    <!-- Admin content -->
+    <header style="background-image: url('images/header2.jpg'); min-height: 150px;">
+        <div class="p-4 text-black text-left">
+            <h1>Beauty & Skincare Organics</h1>
+        </div>
+    </header>
+	
 	<div class="admin-content">
 		<h2>Product Management</h2>
 		<div class="admin-controls">
@@ -322,7 +341,7 @@
 					</tr>
 					<tr>
 						<td>Description</td>
-						<td><textarea id="description" name="description" class="form-control" rows="3"></textarea></td>
+						<td><textarea id="proddescription" name="description" class="form-control" rows="3"></textarea></td>
 					</tr>
 					<!-- Add more rows for additional fields as needed -->
 				</table>
@@ -340,95 +359,117 @@
 	</div>
 </main>
 
-	<!-- Admin DatatablesProduct Listing -->
-	<main>
-		<header class="admin-header" style="background-image: url('images/header2.jpg');">
-			<h1>Beauty & Skincare Organics </h1>
-		</header>
-		<div class="admin-main d-none" id="dataTableContainer">
-			<!-- DataTables Product Listing -->
-			<table id="productTable" class="display" style="width:100%">
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>Name</th>
-						<th>RRP</th>
-						<th>Online</th>
-						<th>Scent</th>
-						<th>Brand</th>
-						<th>Type</th>
-						<th>Volume</th>
-						<th>Skin Concern</th>
-						<th>Ingredient</th>
-						<th>Usage</th>
-						<th>Benefit</th>
-						<th>Quantity</th>
-						<th>Description</th>
-					</tr>
-				</thead>
-				<tbody>
-					<!-- Rows will be filled by the DataTables library -->
-				</tbody>
-			</table>
-			<div class="py-3">
-				<button id="btnBackToAdmin" class="btn btn-primary">Back to Admin</button>
-	
-			</div>
-		</div>
-	
-	</main>
-	
-	<!-- DataTables Customer Details -->
-	
-	<main>
-		<div class="admin-main d-none" id="customerDataTable">
-			<!-- Customer Listing -->
-			<table id="customerTable" class="display" style="width:100%">
-				<thead>
-					<tr>
-						<th>id</th>
-						<th>First Name</th>
-						<th>Last Name</th>
-						<th>Email</th>
-						<th>Skin Type</th>
-						<th>Allergies</th>
-					</tr>
-				</thead>
-				<tbody>
-					<!-- Rows will be filled by the DataTables library -->
-				</tbody>
-			</table>
-			<div class="py-3">
-				<button id="btnBackAdmin" class="btn btn-primary">Back to Admin</button>
-	
-			</div>
-		</div>
-	</main>
-	
-	<!-- DataTables Order Details -->
-	
-	<main>
-		<div class="admin-main d-none" id="orderDataTable">
-			<!-- Order Listing -->
-			<table id="orderTable" class="display" style="width:100%">
-				<thead>
-					<tr>
-						<th>id</th>
-						<th>Customer ID</th>
-						<th>Product ID</th>
-						<th>Quantity</th>
-					</tr>
-				</thead>
-				<tbody>
-					<!-- Rows will be filled by the DataTables library -->
-				</tbody>
-			</table>
-			<div class="py-3">
-				<button id="btnBackForAdmin" class="btn btn-primary">Back to Admin</button>
-	
-			</div>
-		</div>
-	</main>
+
+<!-- Admin DatatablesProduct Listing -->
+<main>
+	<header style="background-image: url('images/bottom3.jpg'); min-height: 150px;">
+        <div class="p-4 text-white text-left">
+            <h1>Beauty & Skincare Organics</h1>
+        </div>
+    </header>
+    
+    <div class="admin-main" id="dataTableContainer">
+        <!-- DataTables Product Listing -->
+        <table id="productTable" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>RRP</th>
+                    <th>Online</th>
+                    <th>Scent</th>
+                    <th>Brand</th>
+                    <th>Type</th>
+                    <th>Volume</th>
+                    <th>Skin Concern</th>
+                    <th>Ingredient</th>
+                    <th>Usage</th>
+                    <th>Benefit</th>
+                    <th>Quantity</th>
+                    <th class="description-column">Description</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows will be filled by the DataTables library -->
+            </tbody>
+        </table>
+
+        <!-- Button to display the chart -->
+        <div class="py-3">
+            <button id="btnDisplayChart" class="btn btn-primary">Display Chart</button>
+			<button id="btnBackToAdmin" class="btn btn-primary">Back</button>
+        </div>
+    </div>
+    
+    <!-- Chart Container -->
+    <div class="chart-container d-none" id="chartContainer">
+        <!--<canvas id="productChart" width="400" height="200"></canvas>-->
+        <canvas id="productChart" class="custom-chart-size"></canvas>
+        <div class="py-3">
+            <button id="btnBackToTable" class="btn btn-primary">Back</button>
+        </div>
+    </div>
+</main>
+
+<!-- DataTables Customer Details -->
+<main>
+    <div class="admin-main d-none" id="customerDataTable">
+        <!-- Customer Listing -->
+        <table id="customerTable" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Skin Type</th>
+                    <th>Allergies</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows will be filled by the DataTables library -->
+            </tbody>
+        </table>
+        <div class="py-3">
+            <button id="btnBackAdmin" class="btn btn-primary">Back</button>
+        </div>
+    </div>
+</main>
+
+<!-- DataTables Order Details -->
+<main>
+    <div class="admin-main d-none" id="orderDataTable">
+        <!-- Order Listing -->
+        <table id="orderTable" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Customer ID</th>
+                    <th>Product ID</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows will be filled by the DataTables library -->
+            </tbody>
+        </table>
+        <div class="py-3">
+			<button id="btnGeneratePieChart" class="btn btn-primary">Chart</button>
+            <button id="btnBackForAdmin" class="btn btn-primary">Back</button>
+        </div>
+    </div>
+
+    <!-- Chart Container -->
+    <div class="chart-container d-none" id="piechartContainer">
+        <canvas id="ordersPieChart" class="custom-canvas-size"></canvas>
+        <div class="py-3">
+            <button id="btnBackForTable" class="btn btn-primary">Back</button>
+        </div>
+    </div>
+
+</main>
+
 
 
 <!-- Footer -->
@@ -437,8 +478,7 @@
         <h5>The one stop shop for everything</h5>
         <h3>Beauty & Organic Skincare </h3>
     </div>
-</footer>    
-
+</footer>
 
     <script>
         feather.replace()

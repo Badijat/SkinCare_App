@@ -158,7 +158,7 @@ var renderList = function(data){
             <div class="details col-sm-4 text-center p-3 d-grid" id="product-${product.id}">
                 <h1>${product.name}</h1>
                 <img src="${'src', 'images/' + product.images}" class="displayCenter">
-                <p><b>${product.brand} ${product.price}</b></p>
+                <p><b>${product.brand} €${product.rrp}</b></p>
                 <p>${product.skinConcern}</p>
                 <button type="button" class="infoButton btn btn-primary" id="${product.id}">More Details</button>
             </div>
@@ -173,8 +173,10 @@ var showDetails = function(product){
 	console.log("Show Details");
 	$('#detailsModal').find('.modal-title').text(product.brand + " - " + product.name);
 	$('#pic').attr('src', 'images/' + product.images);
-	//ingredients
 	$('#ingredients').text(product.ingredients);
+	$('#volume').text(product.volume);
+	$('#usage').text(product.usage);
+	$('#benefits').text(product.benefits);
 	$('#description').text(product.description);
 	    // ... set other details fields
 	$('#rrp').val(product.rrp);

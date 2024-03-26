@@ -83,7 +83,7 @@ public class AdminController {
     }
 	
     //Delete via postman
-    //http://localhost:9092/wines/15
+    //http://localhost:9092/admin-products/15
     @DeleteMapping("/admin-products/{id}")
 	public void deleteProductById(@PathVariable Long id) {
 		Optional<Product> product = adminRepo.findById(id);

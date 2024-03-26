@@ -1,56 +1,56 @@
 body {
-    background-color: #f0f2f5; /* Light grey background */
-    font-family: Arial, sans-serif; /* Use a modern font */
+    background-color: #f0f2f5; 
+    font-family: Arial, sans-serif; 
 }
 
 .navbar {
-    box-shadow: 0 2px 4px rgba(0,0,0,.1); /* Add subtle shadow to navbar */
+    box-shadow: 0 2px 4px rgba(0,0,0,.1); 
 }
 
 .card {
-    border-radius: 8px; /* Rounded corners for the card */
-    box-shadow: 0 4px 8px rgba(0,0,0,.1); /* Add shadow for depth */
-    margin-top: 20px; /* Add some margin to the top */
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0,0,0,.1); 
+    margin-top: 20px; 
 }
 
 .card-header {
-    background-color: #007bff; /* Use Bootstrap primary color */
-    color: #fff; /* White text color */
-    font-size: 24px; /* Increase font size */
-    text-align: center; /* Center the title */
-    border-bottom: none; /* Remove default border */
+    background-color: #9c7ab1; 
+    color: #fff; 
+    font-size: 24px; 
+    text-align: center; 
+    border-bottom: none; 
 }
 
 .form-control {
-    border-radius: 20px; /* Rounded fields for modern look */
-    padding: 20px; /* More padding for larger touch targets */
-    margin-bottom: 10px; /* Add space between fields */
+    border-radius: 20px; 
+    padding: 20px; 
+    margin-bottom: 10px; 
 }
 
 .btn-dark {
-    border-radius: 20px; /* Rounded buttons */
-    padding: 10px 30px; /* Larger buttons */
-    font-size: 18px; /* Increase font size for better readability */
-    width: 100%; /* Full width button */
-    box-shadow: 0 2px 4px rgba(0,0,0,.2); /* Button shadow */
+    border-radius: 20px; 
+    padding: 10px 30px; 
+    font-size: 18px; 
+    width: 100%; 
+    box-shadow: 0 2px 4px rgba(0,0,0,.2); 
     
 
 }
 
 #loginSubmit {
-    background-color: #007bff; /* Bootstrap primary blue */
-    border-color: #007bff; /* Set border color to match */
-    color: #ffffff; /* White text color */
+    background-color: #9c7ab1;
+    border-color: #9c7ab1; 
+    color: #ffffff; 
 }
 
 #loginSubmit:hover, #loginSubmit:focus {
-    background-color: #0056b3; /* Darker shade of blue for hover/focus */
-    border-color: #0056b3;
+    background-color: rgb(128, 0, 128); 
+    border-color: rgb(128, 0, 128);
 }
 
 
 .btn-dark:hover {
-    background-color: #0056b3; /* Darken button on hover */
+    background-color: rgb(128, 0, 128); 
 }
 
 /* Responsive adjustments */
